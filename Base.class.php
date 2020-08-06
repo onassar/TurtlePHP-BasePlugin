@@ -30,6 +30,42 @@
         }
 
         /**
+         * _checkDirectoryWritePermissions
+         * 
+         * @throws  \Exception
+         * @access  protected
+         * @static
+         * @param   string $directoryPath
+         * @return  bool
+         */
+        protected static function _checkDirectoryWritePermissions(string $directoryPath): bool
+        {
+            if (posix_access($directoryPath, POSIX_W_OK) === true) {
+                return true;
+            }
+            $msg = '*' . ($directoryPath) . '* needs to be writable.';
+            throw new \Exception($msg);
+        }
+
+        /**
+         * _checkJSShrinkDependency
+         * 
+         * @throws  \Exception
+         * @access  protected
+         * @static
+         * @return  bool
+         */
+        protected static function _checkJSShrinkDependency(): bool
+        {
+            if (function_exists('jsShrink') === true) {
+                return true;
+            }
+            $link = 'https://github.com/vrana/JsShrink/';
+            $msg = '*jsShrink* function required. Please see ' . ($link);
+            throw new \Exception($msg);
+        }
+
+        /**
          * _checkMemcachedCacheDependency
          * 
          * @throws  \Exception
