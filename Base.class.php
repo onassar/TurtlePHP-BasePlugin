@@ -138,6 +138,26 @@
         }
 
         /**
+         * _encode
+         * 
+         * @access  protected
+         * @static
+         * @param   mixed $mixed
+         * @return  mixed
+         */
+        protected static function _encode($mixed)
+        {
+            if (is_array($mixed) === true) {
+                foreach ($mixed as $key => $value) {
+                    $mixed[$key] = static::_encode($value);
+                }
+                return $mixed;
+            }
+            $encoded = htmlentities($mixed, ENT_QUOTES, 'UTF-8');
+            return $encoded;
+        }
+
+        /**
          * _getConfigData
          * 
          * @see     https://www.php.net/manual/en/function.get-called-class.php
