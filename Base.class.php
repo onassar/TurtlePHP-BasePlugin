@@ -30,6 +30,24 @@
         }
 
         /**
+         * _checkMemcachedCacheDependency
+         * 
+         * @throws  \Exception
+         * @access  protected
+         * @static
+         * @return  bool
+         */
+        protected static function _checkMemcachedCacheDependency(): bool
+        {
+            if (class_exists('\\MemcachedCache') === true) {
+                return true;
+            }
+            $link = 'https://github.com/onassar/PHP-MemcachedCache';
+            $msg = '*\MemcachedCache* class required. Please see ' . ($link);
+            throw new \Exception($msg);
+        }
+
+        /**
          * _checkMySQLConnectionDependency
          * 
          * @throws  \Exception
@@ -62,6 +80,24 @@
             }
             $link = 'https://github.com/onassar/PHP-MySQL';
             $msg = '*\MySQLQuery* class required. Please see ' . ($link);
+            throw new \Exception($msg);
+        }
+
+        /**
+         * _checkSMSessionDependency
+         * 
+         * @throws  \Exception
+         * @access  protected
+         * @static
+         * @return  bool
+         */
+        protected static function _checkSMSessionDependency(): bool
+        {
+            if (class_exists('\\SMSession') === true) {
+                return true;
+            }
+            $link = 'https://github.com/onassar/PHP-SecureSessions';
+            $msg = '*\SMSession* class required. Please see ' . ($link);
             throw new \Exception($msg);
         }
 
