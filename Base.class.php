@@ -188,6 +188,21 @@
         }
 
         /**
+         * _renderPath
+         * 
+         * @access  protected
+         * @static
+         * @param   string $path
+         * @param   array $vars (default: array())
+         * @return  string
+         */
+        protected static function _renderPath(string $path, array $vars = array()): string
+        {
+            $response = \Turtle\Application::renderPath($path, $vars);
+            return $response;
+        }
+
+        /**
          * _setHeader
          * 
          * @access  protected
