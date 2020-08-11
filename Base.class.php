@@ -1,7 +1,7 @@
 <?php
 
     // namespace
-    namespace Plugin;
+    namespace TurtlePHP\Plugin;
 
     /**
      * Base
@@ -21,11 +21,11 @@
          */
         protected static function _checkConfigPluginDependency(): bool
         {
-            if (class_exists('\\Plugin\\Config') === true) {
+            if (class_exists('\\TurtlePHP\Plugin\\Config') === true) {
                 return true;
             }
             $link = 'https://github.com/onassar/TurtlePHP-ConfigPlugin';
-            $msg = '*\Plugin\Config* class required. Please see ' . ($link);
+            $msg = '*\TurtlePHP\Plugin\Config* class required. Please see ' . ($link);
             throw new \Exception($msg);
         }
 
@@ -168,9 +168,9 @@
         protected static function _getConfigData(): array
         {
             $className = get_called_class();
-            $className = str_replace('Plugin\\', '', $className);
+            $className = str_replace('TurtlePHP\Plugin\\', '', $className);
             $key = 'TurtlePHP-' . ($className) . 'Plugin';
-            $configData = \Plugin\Config::retrieve($key);
+            $configData = \TurtlePHP\Plugin\Config::get($key);
             return $configData;
         }
 
@@ -198,7 +198,7 @@
          */
         protected static function _renderPath(string $path, array $vars = array()): string
         {
-            $response = \Turtle\Application::renderPath($path, $vars);
+            $response = \TurtlePHP\Application::renderPath($path, $vars);
             return $response;
         }
 
