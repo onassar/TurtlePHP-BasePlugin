@@ -21,7 +21,7 @@
          */
         protected static function _checkConfigPluginDependency(): bool
         {
-            if (class_exists('\\TurtlePHP\Plugin\\Config') === true) {
+            if (class_exists('\\TurtlePHP\\Plugin\\Config') === true) {
                 return true;
             }
             $link = 'https://github.com/onassar/TurtlePHP-ConfigPlugin';
@@ -168,7 +168,7 @@
         protected static function _getConfigData(): array
         {
             $className = get_called_class();
-            $className = str_replace('TurtlePHP\Plugin\\', '', $className);
+            $className = str_replace('TurtlePHP\\Plugin\\', '', $className);
             $key = 'TurtlePHP-' . ($className) . 'Plugin';
             $configData = \TurtlePHP\Plugin\Config::get($key);
             return $configData;
