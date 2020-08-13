@@ -163,14 +163,16 @@
          * @see     https://www.php.net/manual/en/function.get-called-class.php
          * @access  protected
          * @static
-         * @return  array
+         * @param   array $keys,...
+         * @return  mixed
          */
-        protected static function _getConfigData(): array
+        protected static function _getConfigData(... $keys)
         {
             $className = get_called_class();
             $className = str_replace('TurtlePHP\\Plugin\\', '', $className);
             $key = 'TurtlePHP-' . ($className) . 'Plugin';
-            $configData = \TurtlePHP\Plugin\Config::get($key);
+            array_unshift($keys, $key);
+            $configData = \TurtlePHP\Plugin\Config::get(... $keys);
             return $configData;
         }
 
